@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.VideoDao">
+
+
+    <!--首页视频查询-->
+    <select id="queryByReleaseTime" resultType="com.wang.po.VideoPo">
+        select v.id,v.title,v.cover,v.path,v.publishi_date publishDate,v.biref,c.name cateName,u.head_img headImg
+            FROM yx_video v LEFT JOIN yx_category c
+                ON v.category_id=c.id  LEFT JOIN yx_user u
+                    ON v.user_id=u.id
+    </select>
+
+</mapper>
