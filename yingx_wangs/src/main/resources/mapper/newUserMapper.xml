@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.NewUserDao">
+
+
+    <!--查询每个月份用户注册量--><!-- select sum( sex=#{sex})  from new_user where year(create_date) = #{create_date}  group by month (create_date)
+-->
+    <select id="queryUsernum" resultType="int">
+        select sum( sex=#{sex})as sum  from new_user where year(create_date) = #{create_date}  group by month (create_date)
+
+
+    </select>
+    <!--查询 各个省份新增用户量-->
+    <select id="queryCityrnum" resultType="com.wang.vo.CityVo">
+        	SELECT city as name ,COUNT(id) value FROM new_user WHERE sex=#{sex} GROUP BY city
+    </select>
+
+
+</mapper>

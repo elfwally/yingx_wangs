@@ -1,0 +1,50 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /yingx
+    #支持jsp
+    jsp:
+      init-parameters:
+        development: true
+#配置数据源 链接数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yingx
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    #配置redis  ip地址
+  redis:
+    host: 192.168.71.137  #ip地址
+    port: 7000   #端口号
+    database: 1   #操作的库
+   #配置es
+  data:
+    elasticsearch: #连接ES
+      cluster-nodes: 192.168.71.139:9300  #主机 ip地址 + es端口号
+  #视图解析器
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /
+  #配置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 200MB  #指定服务器接受的文件大小
+      max-request-size: 200MB    #允许请求的文件大小 上传的文件大小
+#配置mybatis
+mybatis:
+  type-aliases-package: com.wang.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #通用mapper 配置 第二步
+  #配置通用mapper后可以取消mapper-locations: classpath:mapper/*Mapper.xml配置    但是通用mapper只适用于单张表操作
+  #但是在表与表之间存在关系时  还是要使用mapper-locations  通用mapper和之前mapper-locations不冲突 可以一起存在
+#日志输出
+logging:
+  level:
+    root: info  #根日志
+    com.wang.dao: debug  #子日志
+  pattern:
+    console: '[%p] %d{yyyy-MM-dd HH:mm:ss} %m %n' #控制台布局
+
