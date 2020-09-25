@@ -27,7 +27,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "yx_video")
-//指定索引，类型
+//指定索引名称，索引类型
 @Document(indexName = "yingx", type = "video")
 public class yx_Video implements Serializable {
     @Id
